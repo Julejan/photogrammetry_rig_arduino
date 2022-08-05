@@ -14,7 +14,8 @@
 #define MICROSTEPS 1
 
 // Parameters for tuning the Motors as needed
-#define TURNTABLE_GEAR_RATIO 5
+#define CALIBRATE_MUlTIPLIER 2
+#define TURNTABLE_GEAR_RATIO 5 // 80 Zähne / 16 Zähne
 #define SLIDER_MULTIPLIER 30
 #define CAM_TURN_MULTIPLIER 2
 #define CAM_ACCEL 3000
@@ -368,7 +369,11 @@ switch(state){
             Serial.print("SliderSingleSteps: ");
             Serial.println(sliderSingleSteps);
             turntableSingleSteps = (int)(MOTOR_STEPS * TURNTABLE_GEAR_RATIO / photosPerSliderDiv[photosPerSliderDivCount]);
+            Serial.print("TurntableSingleSteps: ");
+            Serial.println(turntableSingleSteps);
             cameraSingleSteps = (int)((topRotationSteps - bottomRotationSteps) / sliderDivs[sliderDivCount]);
+            Serial.print("CameraSingleSteps: ");
+            Serial.println(cameraSingleSteps);
             bu_pressed = false;  
             lcd.clear();
             lcd.setCursor(0, 2);
@@ -502,8 +507,8 @@ switch(state){
       {
       sliderStepper.moveTo(topSteps);
       while(sliderStepper.distanceToGo() > 0) sliderStepper.run();
-      sliderStepper.setMaxSpeed(200*120);
-      sliderStepper.setAcceleration(200*120);
+      sliderStepper.setMaxSpeed(sliderStepperSpeed * MOTOR_STEPS * CALIBRATE_MUlTIPLIER);
+      sliderStepper.setAcceleration(SLIDER_ACCEL * CALIBRATE_MUlTIPLIER);
       int steps;
       encoderPositionOld = sliderSteps;
       encoder->setPosition(sliderSteps);
@@ -588,8 +593,8 @@ switch(state){
           lcd.print(sliderStepper.currentPosition());
           while(sliderStepper.distanceToGo() > 0 || sliderStepper.distanceToGo() < 0) sliderStepper.run();
           } 
-          sliderStepper.setMaxSpeed(120 * MOTOR_STEPS);
-          sliderStepper.setAcceleration(120 * MOTOR_STEPS); 
+          sliderStepper.setMaxSpeed(sliderStepperSpeed * MOTOR_STEPS * CALIBRATE_MUlTIPLIER);
+          sliderStepper.setAcceleration(SLIDER_ACCEL * CALIBRATE_MUlTIPLIER); 
       }break;
     case 3:
       {
