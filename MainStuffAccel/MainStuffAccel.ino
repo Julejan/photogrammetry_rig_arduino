@@ -16,7 +16,7 @@
 // Parameters for tuning the Motors as needed
 #define CALIBRATE_MUlTIPLIER 2
 #define TURNTABLE_GEAR_RATIO 5 // 80 Zähne / 16 Zähne
-#define SLIDER_MULTIPLIER 30
+#define SLIDER_MULTIPLIER 10
 #define CAM_TURN_MULTIPLIER 2
 #define CAM_ACCEL 3000
 #define TURN_ACCEL 3000
