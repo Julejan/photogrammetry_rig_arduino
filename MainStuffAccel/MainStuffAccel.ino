@@ -361,6 +361,7 @@ switch(state){
             lcd.setCursor(11, 3);
             lcd.print(photosPerSliderDiv[photosPerSliderDivCount]);
             }
+          }
           if(bu_pressed == true)
             {
             substate++;
@@ -382,8 +383,7 @@ switch(state){
             lcd.setCursor(5, 3);
             lcd.print("0 of ");
             lcd.print(num_photos);
-            }
-          }  
+            }  
         }break;
       case 3:
         {
@@ -404,11 +404,11 @@ switch(state){
           cameraStepper.run();
           sliderStepper.run();
           lcd.setCursor(15,0);
-          lcd.print("      ");
+          lcd.print("   ");
           lcd.setCursor(15,0);
           lcd.print(cameraStepper.currentPosition());
           lcd.setCursor(15,1);
-          lcd.print("    ");
+          lcd.print("   ");
           lcd.setCursor(15,1);
           lcd.print(sliderStepper.currentPosition());
           }
@@ -545,9 +545,8 @@ switch(state){
           substate++;
           bu_pressed = false;
           topSteps = sliderStepper.currentPosition(); 
-          encoderPositionOld = cameraSteps;
-          encoder->setPosition(cameraSteps);
-          lcd.clear();
+          encoderPositionOld = cameraStepper.currentPosition();
+          encoder->setPosition(cameraStepper.currentPosition());
           lcd.clear();
           lcd.setCursor(0, 0);
           lcd.print("Set camera to");
