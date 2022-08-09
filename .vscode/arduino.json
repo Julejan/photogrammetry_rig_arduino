@@ -1,6 +1,6 @@
 {
     "board": "arduino:avr:uno",
     "programmer": "arduino:avrispmkii",
-    "port": "COM4",
+    "port": "COM8",
     "sketch": "MainStuffAccel\\MainStuffAccel.ino"
 }

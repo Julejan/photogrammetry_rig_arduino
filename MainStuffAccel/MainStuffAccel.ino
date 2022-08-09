@@ -23,19 +23,19 @@
 #define SLIDER_ACCEL 3000
 
 // All the wires needed for full functionality
-#define SLIDER_DIR 8
-#define SLIDER_STEP 9
-#define SLIDER_ENABLE 40
-#define CAMERA_DIR 10
-#define CAMERA_STEP 18
-#define CAMERA_ENABLE 41
-#define TURNTABLE_DIR 40
-#define TURNTABLE_STEP 7
-#define TURNTABLE_ENABLE 42
+#define SLIDER_DIR 4
+#define SLIDER_STEP 5
+#define SLIDER_ENABLE 10
+#define CAMERA_DIR 6
+#define CAMERA_STEP 7
+#define CAMERA_ENABLE 10
+#define TURNTABLE_DIR 8
+#define TURNTABLE_STEP 9
+#define TURNTABLE_ENABLE 10
 
 #define PIN_IN1 2
 #define PIN_IN2 3
-#define PIN_PUSH 4
+#define PIN_PUSH 13
 #define CAMERA_PIN 11
 #define CAMERA_TIME_MULTIPLIER 100
 
@@ -626,7 +626,7 @@ switch(state){
           lcd.print("Rotation steps: "); 
           lcd.print(cameraStepper.currentPosition());
           cameraStepper.moveTo(bottomRotationSteps);
-          while(cameraStepper.distanceToGo() > 0) cameraStepper.run();
+          while(cameraStepper.distanceToGo() > 0 || encoder->getPosition() < encoderPositionOld) cameraStepper.run();
           }  
       }break;
     case 4:
