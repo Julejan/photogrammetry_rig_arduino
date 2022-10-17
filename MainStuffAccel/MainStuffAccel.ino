@@ -128,7 +128,6 @@ void checkPosition()
 // Interrupt Service Routine for a change to pushpin
 void isrp ()
   {
-  sliderStepper.run();
   if (!digitalRead(PIN_PUSH) && !pushButtonOld)
     {
     bu_pressed = true;
